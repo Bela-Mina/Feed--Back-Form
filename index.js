@@ -26,10 +26,24 @@ form.addEventListener("submit", function(event){
 })
 
 userText.addEventListener("input", function() {
-    const countWord = userText.value.trim().split(' ');
-    wordCount.textContent = countWord.length
+    //this is for to count word
+    //const countWord = userText.value.trim().split(/\s+/);
+
+    //
+    const trimmedText = userText.value.trim()
+    let countWord;
+    if(trimmedText === "") {
+        countWord = [] //this is help us to put empty sapce
+    } else {
+        countWord = trimmedText.split(/\s+/)
+    }
+    wordCount.textContent = countWord.length;
+
+    //this for Character 
     const countCharacter = userText.value
     count.textContent = countCharacter.length
+
+    //this is for character
     if(countCharacter.length > max_Chars) {
         error.textContent = "Character limit of 5000 exceeded!"
         //
@@ -39,8 +53,13 @@ userText.addEventListener("input", function() {
 
     if(countWord.length > word_Chart) {
         error.textContent = "Word limit of 100 exceeded!"
-        return
+        
+        const limitWord = countWord.slice(0, 100);
+        const limitText = limitWord.join(" ");
+
+        userText.value = limitText
     }
-
-
 })
+
+
+

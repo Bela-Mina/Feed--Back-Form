@@ -26,6 +26,8 @@ form.addEventListener("submit", function(event){
 })
 
 userText.addEventListener("input", function() {
+    const countWord = userText.value.trim().split(' ');
+    wordCount.textContent = countWord.length
     const countCharacter = userText.value
     count.textContent = countCharacter.length
     if(countCharacter.length > max_Chars) {
@@ -34,4 +36,11 @@ userText.addEventListener("input", function() {
        userText.value =   userText.value.slice(0, max_Chars)
         count.textContent = max_Chars
     }
+
+    if(countWord.length > word_Chart) {
+        error.textContent = "Word limit of 100 exceeded!"
+        return
+    }
+
+
 })
